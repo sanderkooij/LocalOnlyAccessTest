@@ -1,6 +1,4 @@
-﻿using System.Net.NetworkInformation;
-using System.Net.Sockets;
-using System.Web;
+﻿using System.Web;
 using System.Web.Mvc;
 
 namespace LocalOnlyAccessTest.Authorization
@@ -22,9 +20,9 @@ namespace LocalOnlyAccessTest.Authorization
 
             if (requestIpAddress == "127.0.0.1" || requestIpAddress == "::1") return true;
 
-            string localIpAddress = _ipAddressProvider.GetLocalIp();
+            var localIpAddresses = _ipAddressProvider.GetLocalIPs();
 
-            return requestIpAddress == localIpAddress;
+            return localIpAddresses.Contains(requestIpAddress);
         }
     }
 }
