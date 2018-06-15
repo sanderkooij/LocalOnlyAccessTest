@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Net.NetworkInformation;
+using LocalOnlyAccessTest.Authorization.Models;
 
-namespace LocalOnlyAccessTest.Authorization
+namespace LocalOnlyAccessTest.Authorization.Providers
 {
     public class IpAddressProvider : IProvideIpAddresses
     {
-        public ICollection<string> GetLocalIPs()
+        public NetworkInfo GetLocalIPs()
         {
             var localIpAddresses = NetworkInterface.GetAllNetworkInterfaces()
                                     .Where(i => i.OperationalStatus == OperationalStatus.Up)
@@ -14,7 +14,7 @@ namespace LocalOnlyAccessTest.Authorization
                                     .Select(i => i.Address.ToString())
                                     .ToList();
 
-            return localIpAddresses;
+            return new NetworkInfo(localIpAddresses);
         }
     }
 }
