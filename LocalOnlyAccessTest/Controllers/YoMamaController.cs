@@ -3,7 +3,7 @@ using LocalOnlyAccessTest.Authorization;
 
 namespace LocalOnlyAccessTest.Controllers
 {
-    [LocalOnlyAuthorization]
+    [LocalOnlyAuthorize]
     public class YoMamaController : Controller
     {
         public ActionResult Index()

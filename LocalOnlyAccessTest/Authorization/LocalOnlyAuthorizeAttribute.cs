@@ -5,7 +5,7 @@ using LocalOnlyAccessTest.Authorization.Models;
 
 namespace LocalOnlyAccessTest.Authorization
 {
-    public class LocalOnlyAuthorizationAttribute : AuthorizeAttribute
+    public class LocalOnlyAuthorizeAttribute : AuthorizeAttribute
     {
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {

@@ -204,7 +204,7 @@
     <Compile Include="Authorization\Models\NetworkInfo.cs" />
     <Compile Include="Authorization\Providers\IpAddressProvider.cs" />
     <Compile Include="Authorization\Providers\IProvideIpAddresses.cs" />
-    <Compile Include="Authorization\LocalOnlyAuthorizationAttribute.cs" />
+    <Compile Include="Authorization\LocalOnlyAuthorizeAttribute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
