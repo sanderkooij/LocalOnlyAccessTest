@@ -1,7 +1,9 @@
-﻿namespace LocalOnlyAccessTest.Authorization
+﻿using System.Collections.Generic;
+
+namespace LocalOnlyAccessTest.Authorization
 {
     public interface IProvideIpAddresses
     {
-        string GetLocalIp();
+        ICollection<string> GetLocalIPs();
     }
 }

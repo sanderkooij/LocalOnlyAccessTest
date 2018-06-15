@@ -1,28 +1,20 @@
-﻿using System.Net.NetworkInformation;
-using System.Net.Sockets;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Net.NetworkInformation;
 
 namespace LocalOnlyAccessTest.Authorization
 {
     public class IpAddressProvider : IProvideIpAddresses
     {
-        public string GetLocalIp()
+        public ICollection<string> GetLocalIPs()
         {
-            var localIp = "";
+            var localIpAddresses = NetworkInterface.GetAllNetworkInterfaces()
+                                    .Where(i => i.OperationalStatus == OperationalStatus.Up)
+                                    .SelectMany(i => i.GetIPProperties().UnicastAddresses)
+                                    .Select(i => i.Address.ToString())
+                                    .ToList();
 
-            foreach (var item in NetworkInterface.GetAllNetworkInterfaces())
-            {
-                if (item.OperationalStatus != OperationalStatus.Up) continue;
-
-                foreach (var ip in item.GetIPProperties().UnicastAddresses)
-                {
-                    if (ip.Address.AddressFamily == AddressFamily.InterNetwork)
-                    {
-                        localIp = ip.Address.ToString();
-                    }
-                }
-            }
-
-            return localIp;
+            return localIpAddresses;
         }
     }
 }
